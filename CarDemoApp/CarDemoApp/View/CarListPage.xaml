@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarDemoApp.View.CarListPage"
+             xmlns:local="clr-namespace:CarDemoApp;assembly=CarDemoApp"
+             xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:RadialMenu="clr-namespace:Syncfusion.SfRadialMenu.XForms;assembly=Syncfusion.SfRadialMenu.XForms"
+             xmlns:ViewModel="clr-namespace:CarDemoApp.ViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CustomConverter x:Key="EventArgs" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Label Text="Select Your Car Below"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        <ListView:SfListView x:Name="ListView" ItemsSource="{Binding CarModelList}" ItemSize="125">
+            <ListView:SfListView.Behaviors>
+                <local:EventToCommandBehavior EventName="ItemTapped" Command="{Binding CarTappedCommand}" Converter="{StaticResource EventArgs}"/>
+            </ListView:SfListView.Behaviors>
+            <ListView:SfListView.ItemTemplate>
+            <DataTemplate>
+
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.4*" />
+                            <RowDefinition Height="0.6*" />
+                        </Grid.RowDefinitions>
+                    <Label Text="{Binding MakeName}" FontAttributes="Bold" TextColor="Teal" FontSize="21" />
+                    <Label Grid.Row="1" Text="{Binding ModelName}" FontSize="15"/>
+                    <!--<RadialMenu:SfRadialMenu Grid.RowSpan="2" x:Name="radialMenu"
+                            IsVisible="{Binding MenuVisible}"
+                            IsEnabled="{Binding MenuVisible}"
+                            CenterButtonText="&#xE71D;"
+                            CenterButtonBackgroundColor="Red"
+                            CenterButtonBackText="&#xE72B;" 
+                            CenterButtonFontFamily="Segoe MDL2 Assets.ttf" 
+                            CenterButtonRadius="32">
+                            <RadialMenu:SfRadialMenu.Items>
+                                <RadialMenu:SfRadialMenuItem FontIconText="&#xE7EC;" IconFontColor="CornflowerBlue" IconFontFamily="Segoe MDL2 Assets.ttf"/>
+                                <RadialMenu:SfRadialMenuItem FontIconText="&#xE74E;" IconFontColor="Green" IconFontFamily="Segoe MDL2 Assets.ttf"/>
+                                <RadialMenu:SfRadialMenuItem FontIconText="&#xE8EC;" IconFontColor="Red" IconFontFamily="Segoe MDL2 Assets.ttf"/>
+                                <RadialMenu:SfRadialMenuItem FontIconText="&#xE8A1;" IconFontColor="Yellow" IconFontFamily="Segoe MDL2 Assets.ttf"/>
+                            </RadialMenu:SfRadialMenu.Items>
+                     </RadialMenu:SfRadialMenu>-->
+                    </Grid>
+            </DataTemplate>
+        </ListView:SfListView.ItemTemplate>
+    </ListView:SfListView>
+    </StackLayout>
+
+</ContentPage>

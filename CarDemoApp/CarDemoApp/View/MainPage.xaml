@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CarDemoApp"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:ViewModel="clr-namespace:CarDemoApp.ViewModel"
+             x:Class="CarDemoApp.View.MainPage">
+
+    <ContentPage.BindingContext>
+        <ViewModel:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="itemTemplate">
+                <Image Source="{Binding BrandLogo}" Aspect="AspectFit"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0">
+            <Label Text="Choose Your Car Brand Below" 
+                                    VerticalOptions="Start" 
+                                    HorizontalOptions="Center" 
+                                    HeightRequest="15"/>
+            <syncfusion:SfCarousel x:Name="carousel"
+                                   ItemsSource="{Binding CarBrandList}"
+                                   ItemTemplate="{StaticResource itemTemplate}"
+                                   ItemWidth="200" 
+                                   ItemSpacing="40"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="350"/>
+        </StackLayout>
+        <Button Grid.Row="1" 
+                Text="Next" 
+                Command="{Binding GetCarListCommand}" 
+                WidthRequest="20" 
+                BorderRadius="5"
+                CommandParameter="{Binding Source={x:Reference carousel}, Path=SelectedIndex}"
+                VerticalOptions="StartAndExpand"/>
+    </Grid>
+
+
+</ContentPage>

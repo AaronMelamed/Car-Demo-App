@@ -5,15 +5,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
+    <None Remove="Assets\GIS Succinctly.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\GIS Succinctly.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Syncfusion.Xamarin.Pdf" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRadialMenu" Version="15.4.0.20" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="View\CarDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
